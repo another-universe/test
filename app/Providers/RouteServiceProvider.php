@@ -26,7 +26,11 @@ final class RouteServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->configureRateLimiting();
+        $this->registerRouteBindings();
+
+        $this->registerRoutePatterns();
+
+        // $this->configureRateLimiting();
 
         $this->routes(static function () {
             Route::middleware(['api'])
@@ -46,5 +50,19 @@ final class RouteServiceProvider extends ServiceProvider
         RateLimiter::for('api', static function (Request $request) {
             return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
         });
+    }
+
+    /**
+     * Register route bindings.
+     */
+    private function registerRouteBindings(): void
+    {
+    }
+
+    /**
+     * Register route patterns.
+     */
+    private function registerRoutePatterns(): void
+    {
     }
 }

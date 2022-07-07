@@ -15622,6 +15622,20 @@
         {
                         \Illuminate\Routing\UrlGenerator::flushMacros();
         }
+                    /**
+         * 
+         *
+         * @see \App\Support\Routing\UrlGeneratorMixin::lroute()
+         * @param string $name
+         * @param array $parameters
+         * @param bool $absolute
+         * @return string 
+         * @static 
+         */ 
+        public static function lroute($name, $parameters = [], $absolute = true)
+        {
+                        return \Illuminate\Routing\UrlGenerator::lroute($name, $parameters, $absolute);
+        }
          
     }
             /**
@@ -17570,6 +17584,31 @@
         public static function hasValidSignatureWhileIgnoring($ignoreQuery = [], $absolute = true)
         {
                         return \Illuminate\Http\Request::hasValidSignatureWhileIgnoring($ignoreQuery, $absolute);
+        }
+         
+    }
+     
+}
+
+    namespace Illuminate\Routing { 
+            /**
+     * 
+     *
+     */ 
+        class UrlGenerator {
+                    /**
+         * 
+         *
+         * @see \App\Support\Routing\UrlGeneratorMixin::lroute()
+         * @param string $name
+         * @param array $parameters
+         * @param bool $absolute
+         * @return string 
+         * @static 
+         */ 
+        public static function lroute($name, $parameters = [], $absolute = true)
+        {
+                        return \Illuminate\Routing\UrlGenerator::lroute($name, $parameters, $absolute);
         }
          
     }

@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::middleware(['locale.cookie.redirect', 'localization.redirect.filter'])
+    ->prefix(LaravelLocalization::setLocale())
+    ->group(function () {
+        Route::view('/', 'home.index')
+            ->name('home');
+    });
