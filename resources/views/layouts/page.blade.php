@@ -17,3 +17,11 @@
 
 </div>
 @endsection
+
+@auth
+@push('end_of_page')
+<form id="_logout" style="display: none;" action="{{ lroute('logout') }}" method="post">
+@csrf
+</form>
+@endpush
+@endif

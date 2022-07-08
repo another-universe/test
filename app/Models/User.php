@@ -7,11 +7,50 @@ namespace App\Models;
 use App\Kernel\Eloquent\Models\User as Model;
 use App\Collections\UserCollection;
 use App\QueryBuilders\UserQueryBuilder;
+use App\Models\Concerns\User\HasAccessAttributesViaMethods;
 use Laravel\Sanctum\HasApiTokens;
 
+/**
+ * App\Models\User
+ *
+ * @property int $id
+ * @property string $email
+ * @property \Carbon\CarbonImmutable|null $email_verified_at
+ * @property string $password
+ * @property string|null $remember_token
+ * @property \Carbon\CarbonImmutable|null $created_at
+ * @property \Carbon\CarbonImmutable|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
+ * @property-read int|null $tokens_count
+ *
+ * @method static UserCollection|static[] all($columns = ['*'])
+ * @method static \Database\Factories\UserFactory factory(...$parameters)
+ * @method static UserQueryBuilder|User findByAuthEmail(string $email)
+ * @method static UserCollection|static[] get($columns = ['*'])
+ * @method static UserQueryBuilder|User newModelQuery()
+ * @method static UserQueryBuilder|User newQuery()
+ * @method static UserQueryBuilder|User query()
+ * @method static UserQueryBuilder|User whereAuthEmail(string $email)
+ * @method static UserQueryBuilder|User whereCreatedAt($value)
+ * @method static UserQueryBuilder|User whereEmail($value)
+ * @method static UserQueryBuilder|User whereEmailVerifiedAt($value)
+ * @method static UserQueryBuilder|User whereId($value)
+ * @method static UserQueryBuilder|User wherePassword($value)
+ * @method static UserQueryBuilder|User whereRememberToken($value)
+ * @method static UserQueryBuilder|User whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
 final class User extends Model
 {
+    use HasAccessAttributesViaMethods;
     use HasApiTokens;
+
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'users';
 
     /**
      * The attributes that are mass assignable.
@@ -19,7 +58,6 @@ final class User extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
         'email',
         'password',
     ];

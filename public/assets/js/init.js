@@ -48,25 +48,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-/***/ }),
-
-/***/ "./resources/scss/styles.scss":
-/*!************************************!*\
-  !*** ./resources/scss/styles.scss ***!
-  \************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
 /***/ })
 
 },
 /******/ __webpack_require__ => { // webpackRuntimeModules
 /******/ var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-/******/ __webpack_require__.O(0, ["assets/css/styles","/assets/js/vendor"], () => (__webpack_exec__("./resources/js/init/index.js"), __webpack_exec__("./resources/scss/styles.scss")));
+/******/ __webpack_require__.O(0, ["/assets/js/vendor"], () => (__webpack_exec__("./resources/js/init/index.js")));
 /******/ var __webpack_exports__ = __webpack_require__.O();
 /******/ }
 ]);
