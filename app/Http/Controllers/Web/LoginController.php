@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Web;
 
 use App\Kernel\Routing\Controller;
-use App\Actions\User\LoginAction;
+use App\Actions\User\LoginUserAction;
 use App\Http\Requests\Web\User\LoginRequest;
 use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
@@ -25,14 +25,14 @@ final class LoginController extends Controller
      */
     public function handleLoginAttempt(LoginRequest $request): JsonResponse
     {
-        $action = \app(LoginAction::class);
+        $action = \app(LoginUserAction::class);
 
         $action
             ->useSession($request->shouldRemember())
             ->execute($request->getAuthUser());
 
         return \response()->json([
-            'message' => 'logged in',
+            'message' => 'Logged in',
         ]);
     }
 }

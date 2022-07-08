@@ -19,6 +19,6 @@ final class Authenticate extends Middleware
             return null;
         }
 
-        return \route('login');
+        return \lroute('login');
     }
 }

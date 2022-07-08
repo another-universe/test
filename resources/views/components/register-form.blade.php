@@ -1,18 +1,18 @@
-<div id="loginForm"></div>
+<div id="registerForm"></div>
 
 @push('vue_templates')
-<script type="text/x-template" id="_loginForm">
+<script type="text/x-template" id="_registerForm">
 <form
 ref="form"
 role="form"
 @submit.prevent="submit"
-data-action-url="{{ lroute('login.handle') }}"
+data-action-url="{{ lroute('register.handle') }}"
 data-redirect-url="{{ lroute('home') }}"
 novalidate
 >
 <div class="mb-3 row">
 <label class="col-3 col-form-label" for="authEmail">
-{{ __('login/login_page.form.email') }}
+{{ __('register/register_page.form.email') }}
 </label>
 
 <div class="col-9">
@@ -36,7 +36,7 @@ required
 
 <div class="mb-3 row">
 <label class="col-3 col-form-label" for="authPassword">
-{{ __('login/login_page.form.password') }}
+{{ __('register/register_page.form.password') }}
 </label>
 
 <div class="col-9">
@@ -70,32 +70,22 @@ required
 </div>
 
 <div class="mb-2 row">
-<div class="col-6">
-<div class="form-check">
-<input
-v-model="form.remember"
-type="checkbox"
-name="remember"
-id="authRemember"
-class="form-check-input"
-/>
-
-<label class="form-check-label" for="authRemember">
-{{ __('login/login_page.form.remember') }}
-</label>
-</div>
-</div>
-
-<div class="col-6">
+<div class="col-9 offset-3">
+<div class="d-flex flex-row justify-content-between">
 <button ref="submit" type="submit" class="btn btn-primary" :disabled="submitting">
 <template v-if="submitting">
 <span class="spinner-border spinner-border-sm"></span>
 <span class="visually-hidden" role="status">{{ __('common.please_wait') }}...</span>
 </template>
 <template v-else>
-{{ __('login/login_page.form.submit') }}
+{{ __('register/register_page.form.submit') }}
 </template>
 </button>
+
+<a href="{{ lroute('login') }}" class="btn btn-link">
+{{ __('register/register_page.form.have_account') }}?
+</a>
+</div>
 </div>
 </div>
 </form>

@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace App\Actions\User;
 
-use App\Models\User;
 use Illuminate\Auth\SessionGuard;
 use Closure;
 use LogicException;
 use RuntimeException;
 
-final class LoginAction
+final class LogoutUserAction
 {
     private ?Closure $handler = null;
 
@@ -20,28 +19,28 @@ final class LoginAction
      * @throws LogicException
      * @throws RuntimeException
      */
-    public function execute(User $user): mixed
+    public function execute(): mixed
     {
         if ($this->handler === null) {
             throw new LogicException('The handler method not selected.');
         }
 
-        return \call_user_func($this->handler, $user);
+        return \call_user_func($this->handler);
     }
 
     /**
-     * Authenticate the user using session.
+     * Log out using session.
      */
-    public function useSession(bool $remember = false, ?string $guard = null): self
+    public function useSession(?string $guard = null): self
     {
-        $this->handler = static function ($user) use ($remember, $guard): bool {
+        $this->handler = static function () use ($guard): bool {
             $guard = \auth()->guard($guard);
 
             if (! $guard instanceof SessionGuard) {
                 throw new RuntimeException('The guard is not an instance of the '.SessionGuard::class.' class.');
             }
 
-            $guard->login($user, $remember);
+            $guard->logoutCurrentDevice();
 
             return true;
         };

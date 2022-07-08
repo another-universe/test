@@ -36,5 +36,11 @@ Route::middleware(['locale.cookie.redirect', 'localization.redirect.filter'])
 
                 Route::post('/login', [Controllers\LoginController::class, 'handleLoginAttempt'])
                     ->name('login.handle');
+
+                Route::get('/registration', [Controllers\RegisterController::class, 'index'])
+                    ->name('register');
+
+                Route::post('/registration', [Controllers\RegisterController::class, 'handleRegister'])
+                    ->name('register.handle');
             });
     });

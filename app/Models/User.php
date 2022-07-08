@@ -24,6 +24,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @property-read int|null $tokens_count
  *
  * @method static UserCollection|static[] all($columns = ['*'])
+ * @method static UserQueryBuilder|User checkIfEmailIsAvailableForRegister(string $email, \App\Models\User|int|null $ignore = null)
  * @method static \Database\Factories\UserFactory factory(...$parameters)
  * @method static UserQueryBuilder|User findByAuthEmail(string $email)
  * @method static UserCollection|static[] get($columns = ['*'])

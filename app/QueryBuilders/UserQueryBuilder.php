@@ -22,4 +22,17 @@ final class UserQueryBuilder extends Builder
     {
         return $this->whereAuthEmail($email)->first();
     }
+
+    public function checkIfEmailIsAvailableForRegister(string $email, int|User|null $ignore = null): bool
+    {
+        return $this
+            ->where(static function ($query) use ($email, $ignore) {
+                $query->whereAuthEmail($email);
+
+                if ($ignore !== null) {
+                    $query->whereKeyNot($ignore);
+                }
+            })
+            ->doesntExist();
+    }
 }

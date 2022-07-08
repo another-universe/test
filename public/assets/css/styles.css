@@ -10267,4 +10267,8 @@ body {
   font-weight: 500;
 }
 
+.navbar .dropdown-item {
+  font-size: 0.875rem;
+}
+
 /*# sourceMappingURL=styles.css.map*/

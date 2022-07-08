@@ -6,7 +6,7 @@
 </div>
 
 <div class="nav-item text-nowrap">
-<a href="#" class="nav-link px-3">
+<a href="{{ lroute('register') }}" class="nav-link px-3">
 {{ __('page_header_menu/guest_menu.register') }}
 </a>
 </div>

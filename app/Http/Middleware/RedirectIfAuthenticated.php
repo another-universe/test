@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Middleware;
 
-use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,7 +26,7 @@ final class RedirectIfAuthenticated
                 if ($request->expectsJson() || $request->is(['api/*'])) {
                     throw new AccessDeniedHttpException(Response::$statusTexts[Response::HTTP_FORBIDDEN]);
                 } else {
-                    return \redirect(RouteServiceProvider::HOME);
+                    return \redirect(\lroute('home'));
                 }
             }
         }
