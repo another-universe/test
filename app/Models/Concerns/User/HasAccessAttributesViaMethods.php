@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models\Concerns\User;
 
+use App\Collections\QuoteCollection;
 use Carbon\CarbonInterface;
 
 trait HasAccessAttributesViaMethods
@@ -45,5 +46,10 @@ trait HasAccessAttributesViaMethods
     public function getUpdatedAt(): CarbonInterface
     {
         return $this->updated_at;
+    }
+
+    public function getQuotes(): QuoteCollection
+    {
+        return $this->getRelationValue('quotes');
     }
 }

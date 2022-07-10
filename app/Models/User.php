@@ -8,6 +8,7 @@ use App\Kernel\Eloquent\Models\User as Model;
 use App\Collections\UserCollection;
 use App\QueryBuilders\UserQueryBuilder;
 use App\Models\Concerns\User\HasAccessAttributesViaMethods;
+use App\Models\Concerns\User\HasRelations;
 use Laravel\Sanctum\HasApiTokens;
 
 /**
@@ -20,6 +21,8 @@ use Laravel\Sanctum\HasApiTokens;
  * @property string|null $remember_token
  * @property \Carbon\CarbonImmutable|null $created_at
  * @property \Carbon\CarbonImmutable|null $updated_at
+ * @property-read \App\Collections\QuoteCollection|\App\Models\Quote[] $quotes
+ * @property-read int|null $quotes_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
  * @property-read int|null $tokens_count
  *
@@ -44,6 +47,7 @@ use Laravel\Sanctum\HasApiTokens;
 final class User extends Model
 {
     use HasAccessAttributesViaMethods;
+    use HasRelations;
     use HasApiTokens;
 
     /**

@@ -20,13 +20,19 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 Route::middleware(['locale.cookie.redirect', 'localization.redirect.filter'])
     ->prefix(LaravelLocalization::setLocale())
     ->group(function () {
-        Route::view('/', 'home.index')
+        Route::get('/', Controllers\HomeController::class)
             ->name('home');
+
+        Route::get('/quotes', [Controllers\QuoteController::class, 'index'])
+            ->name('quotes.index');
 
         Route::middleware(['auth'])
             ->group(function () {
                 Route::any('/logout', Controllers\LogoutController::class)
                     ->name('logout');
+
+                Route::resource('/quotes', Controllers\QuoteController::class)
+                    ->only(['create', 'store', 'edit', 'update']);
             });
 
         Route::middleware(['guest'])
