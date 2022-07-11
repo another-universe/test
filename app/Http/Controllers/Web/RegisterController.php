@@ -28,7 +28,7 @@ final class RegisterController extends Controller
      */
     public function handleRegister(RegisterRequest $request): JsonResponse
     {
-        $data = new CreateUserData($request->validated());
+        $data = CreateUserData::fromRequest($request);
         $action = \app(CreateUserAction::class);
 
         $action

@@ -6,6 +6,11 @@ namespace App\Http\Controllers\Web;
 
 use App\Kernel\Routing\Controller;
 use App\Kernel\Http\Concerns\Quote\AuthorizesRequests;
+use App\Actions\Quote\CreateQuoteAction;
+use App\DataTransferObjects\Quote\CreateQuoteData;
+use App\Http\Requests\Web\Quote\CreateRequest;
+use Illuminate\Http\Response;
+use Illuminate\Http\JsonResponse;
 
 final class QuoteController extends Controller
 {
@@ -29,15 +34,23 @@ final class QuoteController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): Response
     {
+        return \response()->view('quote.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store()
+    public function store(CreateRequest $request): JsonResponse
     {
+        $data = CreateQuoteData::fromRequest($request);
+        $action = \app(CreateQuoteAction::class);
+        $action->execute($data);
+
+        return \response()->json([
+            'message' => 'Created',
+        ], 201);
     }
 
     /**

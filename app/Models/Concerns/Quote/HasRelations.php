@@ -14,13 +14,9 @@ trait HasRelations
         return $this->belongsTo(User::class);
     }
 
-    public function associateUser(User $user, bool $save = true): bool|static
+    public function associateUser(User $user): static
     {
         $this->user()->associate($user);
-
-        if ($save) {
-            return $this->save() ? $this : false;
-        }
 
         return $this;
     }

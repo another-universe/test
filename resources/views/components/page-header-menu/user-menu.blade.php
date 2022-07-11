@@ -6,7 +6,7 @@
 </div>
 
 <div class="nav-item text-nowrap">
-<a href="#" class="nav-link px-3">
+<a href="{{ lroute('quotes.create') }}" class="nav-link px-3">
 {{ __('page_header_menu/user_menu.add_quote') }}
 </a>
 </div>

@@ -16,6 +16,8 @@ final class ValidationServiceProvider extends ServiceProvider
     {
         $this->app->resolving('validator', static function (Factory $factory) {
             $factory->extend('unique_user_email', \App\Rules\UniqueUserEmail::class);
+
+            $factory->extend('unique_quote', \App\Rules\UniqueQuote::class);
         });
     }
 

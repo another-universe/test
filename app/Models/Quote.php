@@ -23,6 +23,7 @@ use App\Models\Concerns\Quote\HasRelations;
  * @property-read \App\Models\User|null $user
  *
  * @method static QuoteCollection|static[] all($columns = ['*'])
+ * @method static QuoteQueryBuilder|Quote checkCanBeAdded(string $text, string $language, \App\Models\Quote|int|null $ignore = null)
  * @method static QuoteCollection|static[] get($columns = ['*'])
  * @method static QuoteQueryBuilder|Quote newModelQuery()
  * @method static QuoteQueryBuilder|Quote newQuery()
