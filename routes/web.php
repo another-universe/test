@@ -33,6 +33,9 @@ Route::middleware(['locale.cookie.redirect', 'localization.redirect.filter'])
 
                 Route::resource('/quotes', Controllers\QuoteController::class)
                     ->only(['create', 'store', 'edit', 'update']);
+
+                Route::get('/quotes/my-quotes', [Controllers\QuoteController::class, 'userQuotes'])
+                    ->name('quotes.user_quotes');
             });
 
         Route::middleware(['guest'])

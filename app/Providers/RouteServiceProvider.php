@@ -57,6 +57,9 @@ final class RouteServiceProvider extends ServiceProvider
      */
     private function registerRouteBindings(): void
     {
+        Route::bind('quote', static function ($value) {
+            return \App\Models\Quote::findOrFail($value);
+        });
     }
 
     /**
@@ -64,5 +67,6 @@ final class RouteServiceProvider extends ServiceProvider
      */
     private function registerRoutePatterns(): void
     {
+        Route::pattern('quote', '\\d+');
     }
 }

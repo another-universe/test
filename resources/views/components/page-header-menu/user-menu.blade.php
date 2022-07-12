@@ -1,6 +1,6 @@
 <div class="navbar-nav flex-row">
 <div class="nav-item text-nowrap">
-<a href="#" class="nav-link px-3">
+<a href="{{ lroute('quotes.user_quotes') }}" class="nav-link px-3">
 {{ __('page_header_menu/user_menu.your_quotes') }}
 </a>
 </div>

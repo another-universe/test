@@ -7,4 +7,5 @@ return [
     'show_password' => 'Показать пароль',
     'close' => 'Закрыть',
     'please_wait' => 'Пожалуйста, подождите',
+    'times' => ':count раз|:count раза',
 ];

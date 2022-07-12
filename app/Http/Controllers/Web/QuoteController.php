@@ -6,9 +6,13 @@ namespace App\Http\Controllers\Web;
 
 use App\Kernel\Routing\Controller;
 use App\Kernel\Http\Concerns\Quote\AuthorizesRequests;
+use App\Models\Quote;
 use App\Actions\Quote\CreateQuoteAction;
+use App\Actions\Quote\EditQuoteAction;
 use App\DataTransferObjects\Quote\CreateQuoteData;
+use App\DataTransferObjects\Quote\EditQuoteData;
 use App\Http\Requests\Quote\CreateRequest;
+use App\Http\Requests\Quote\UpdateRequest;
 use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
 
@@ -29,6 +33,17 @@ final class QuoteController extends Controller
      */
     public function index()
     {
+    }
+
+    /**
+     * Display a listing of the resource owned by the authenticated user.
+     */
+    public function userQuotes(): Response
+    {
+        $user = \auth()->user();
+        $quotes = $user->getQuotesWithPagination();
+
+        return \response()->view('quote.user-quotes', \compact('quotes'));
     }
 
     /**
@@ -56,14 +71,22 @@ final class QuoteController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit()
+    public function edit(Quote $quote): Response
     {
+        return \response()->view('quote.edit', \compact('quote'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update()
+    public function update(UpdateRequest $request, Quote $quote): JsonResponse
     {
+        $data = EditQuoteData::fromRequest($request);
+        $action = \app(EditQuoteAction::class);
+        $action->execute($quote, $data);
+
+        return \response()->json([
+            'message' => 'Updated',
+        ]);
     }
 }

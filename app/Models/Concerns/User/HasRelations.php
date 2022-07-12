@@ -6,6 +6,8 @@ namespace App\Models\Concerns\User;
 
 use App\Models\Quote;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Contracts\Pagination\CursorPaginator;
+use Illuminate\Pagination\Cursor;
 
 trait HasRelations
 {
@@ -36,5 +38,13 @@ trait HasRelations
         }
 
         return $saved;
+    }
+
+    public function getQuotesWithPagination(?int $perPage = null, Cursor|string|null $cursor = null): CursorPaginator
+    {
+        return $this
+            ->quotes()
+            ->orderBy('id', 'desc')
+            ->cursorPaginate(perPage: $perPage, cursor: $cursor);
     }
 }

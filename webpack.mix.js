@@ -6,6 +6,8 @@ mix.js('resources/js/register-page/index.js', 'public/assets/js/register-page.js
 
 mix.js('resources/js/quote-create-page/index.js', 'public/assets/js/quote-create-page.js');
 
+mix.js('resources/js/quote-edit-page/index.js', 'public/assets/js/quote-edit-page.js');
+
 mix.js('resources/js/init/index.js', 'public/assets/js/init.js');
 
 mix.sass('resources/scss/styles.scss', 'public/assets/css/styles.css');

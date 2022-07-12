@@ -20,4 +20,9 @@ trait HasRelations
 
         return $this;
     }
+
+    public function isBelongsTo(User $user): bool
+    {
+        return $user->getId() === $this->user_id;
+    }
 }
