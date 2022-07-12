@@ -90,4 +90,12 @@ final class Quote extends Model
     {
         return new QuoteQueryBuilder($query);
     }
+
+    /**
+     * Increment the value of the "shared" column.
+     */
+    public function incrementShared(): int
+    {
+        return $this->increment('shared', 1);
+    }
 }
