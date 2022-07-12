@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\Kernel\Http\Requests\User;
+namespace App\Http\Requests\User;
 
 use Closure;
 use App\Models\User;
 use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Foundation\Http\FormRequest;
 
-abstract class LoginRequest extends FormRequest
+final class LoginRequest extends FormRequest
 {
-    protected ?User $authUser = null;
+    private ?User $authUser = null;
 
     /**
      * Get data to be validated from the request.
@@ -78,7 +78,7 @@ abstract class LoginRequest extends FormRequest
     /**
      * Validate email.
      */
-    protected function validateAuthEmail(string $attribute, string $value, Closure $fail): void
+    private function validateAuthEmail(string $attribute, string $value, Closure $fail): void
     {
         $this->authUser = User::findByAuthEmail($value);
 
@@ -91,7 +91,7 @@ abstract class LoginRequest extends FormRequest
     /**
      * Validate password.
      */
-    protected function validateAuthPassword(string $attribute, string $value, Closure $fail): void
+    private function validateAuthPassword(string $attribute, string $value, Closure $fail): void
     {
         if ($this->authUser === null) {
             return;
@@ -103,5 +103,13 @@ abstract class LoginRequest extends FormRequest
             $message = $this->validator->customMessages['password.incorrect'] ?? \__('validation.current_password');
             $fail($message);
         }
+    }
+
+    /**
+     * Determine if the user wants to set a "remember me" cookie.
+     */
+    public function shouldRemember(): bool
+    {
+        return $this->boolean('remember', false);
     }
 }

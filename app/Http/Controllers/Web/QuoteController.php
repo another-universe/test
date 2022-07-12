@@ -8,7 +8,7 @@ use App\Kernel\Routing\Controller;
 use App\Kernel\Http\Concerns\Quote\AuthorizesRequests;
 use App\Actions\Quote\CreateQuoteAction;
 use App\DataTransferObjects\Quote\CreateQuoteData;
-use App\Http\Requests\Web\Quote\CreateRequest;
+use App\Http\Requests\Quote\CreateRequest;
 use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
 

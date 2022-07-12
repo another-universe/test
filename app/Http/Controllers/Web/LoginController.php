@@ -6,7 +6,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Kernel\Routing\Controller;
 use App\Actions\User\LoginUserAction;
-use App\Http\Requests\Web\User\LoginRequest;
+use App\Http\Requests\User\LoginRequest;
 use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
 

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Kernel\Http\Requests\User;
+namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-abstract class RegisterRequest extends FormRequest
+final class RegisterRequest extends FormRequest
 {
     /**
      * Get data to be validated from the request.

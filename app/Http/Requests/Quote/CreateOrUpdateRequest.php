@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Kernel\Http\Requests\Quote;
+namespace App\Http\Requests\Quote;
 
 use App\Rules\UniqueQuote;
 use Illuminate\Foundation\Http\FormRequest;
 
-abstract class CreateRequest extends FormRequest
+abstract class CreateOrUpdateRequest extends FormRequest
 {
     /**
      * Get data to be validated from the request.

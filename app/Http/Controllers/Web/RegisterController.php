@@ -9,7 +9,7 @@ use App\Models\User;
 use App\Actions\User\CreateUserAction;
 use App\Actions\User\LoginUserAction;
 use App\DataTransferObjects\User\CreateUserData;
-use App\Http\Requests\Web\User\RegisterRequest;
+use App\Http\Requests\User\RegisterRequest;
 use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
 
